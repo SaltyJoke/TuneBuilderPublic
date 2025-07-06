@@ -49,6 +49,7 @@ public class TuneCollection : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
+        Time.timeScale = 1;
     }
 
     public void OpenMenu()
@@ -63,6 +64,7 @@ public class TuneCollection : MonoBehaviour
             frag.Translate(Vector3.up * i * -1.5f);
             frag.gameObject.SetActive(true);
         }
+        Time.timeScale = 0;
     }
 
     public void AddFragment(string frag)

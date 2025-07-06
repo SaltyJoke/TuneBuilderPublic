@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Player : MonoBehaviour
 {
@@ -10,18 +11,16 @@ public class Player : MonoBehaviour
     {
         STAND, START, WALK, STOP
     }
-    private enum ScrollState
-    {
-        WALK, SCROLL, STOP
-    }
     private PlayerAnimationState animationState = PlayerAnimationState.STAND;
-    private ScrollState scrollState = ScrollState.WALK;
     private string walkPrefix;
     private int walkSpriteIndex;
     private float velocity;
     private const float ZERO = 0.0001f;
     private int direction;
     Room room;
+    Vector2 endOfRoom;
+    //double deltaTimeSum = 0;
+    //double deltaTimeSum2 = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +33,15 @@ public class Player : MonoBehaviour
         velocity = 0f;
         direction = 1;
         room = (Room)(GameObject.FindWithTag("Room").GetComponent<MonoBehaviour>());
+        endOfRoom = room.getEndOfRoom();
         Time.fixedDeltaTime = 0.1f; // TODO: move this to a better spot 
+        StartCoroutine(changeFramerate()); // TODO: move this to a better spot 
+    }
+
+    IEnumerator changeFramerate()
+    {
+        yield return new WaitForSeconds(1);
+        QualitySettings.vSyncCount = 1;
     }
 
     private void HandleInput()
@@ -79,31 +86,25 @@ public class Player : MonoBehaviour
 
     private void UpdatePosition()
     {
-        // TODO: add scrolling functionality
-        if (scrollState == ScrollState.WALK)
+        if ((velocity == 0f) || 
+            (velocity > 0f && transform.position.x >= endOfRoom.y) || (velocity < 0f && transform.position.x <= endOfRoom.x))
         {
-            if ((velocity > 0f && transform.position.x > 0f && transform.position.x < 0.5f) 
-                || (velocity < 0f && transform.position.x < 0f && transform.position.x > -0.5f)) // hit middle of screen
-            {
-                scrollState = ScrollState.SCROLL;
-            } else
-            {
-                transform.Translate(Vector3.right * velocity * Time.deltaTime);
-            }
+            return;
         }
-        if (scrollState == ScrollState.SCROLL)
+        if ((velocity > 0f && transform.position.x < 0f) || (velocity < 0f && transform.position.x > 0f))
+        {
+            transform.Translate(Vector3.right * velocity * Time.deltaTime);
+            //deltaTimeSum += Time.deltaTime;
+            UnityEngine.Debug.Log(Time.deltaTime);
+        } else
         {
             bool scrollable = room.Scroll(velocity);
             if (!scrollable)
             {
-                scrollState = ScrollState.WALK;
+                transform.Translate(Vector3.right * velocity * Time.deltaTime);
+                //deltaTimeSum2 += Time.deltaTime;
+                UnityEngine.Debug.Log(Time.deltaTime);
             }
-        }
-        if (scrollState == ScrollState.STOP
-            && ((velocity > 0f && transform.position.x < 0f) || (velocity < 0f && transform.position.x > 0f)))
-        {
-            transform.Translate(Vector3.right * velocity * Time.deltaTime);
-            scrollState = ScrollState.WALK;
         }
     }
 
@@ -149,14 +150,5 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         updateAnimation();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.name == "EndOfRoom")
-        {
-            scrollState = ScrollState.STOP;
-            UnityEngine.Debug.Log("End of room reached");
-        }
     }
 }
