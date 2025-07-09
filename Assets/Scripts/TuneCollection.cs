@@ -43,12 +43,12 @@ public class TuneCollection : MonoBehaviour
     public void CloseMenu()
     {
         menuOpen = false;
-        spriteRenderer.sprite = closedSprite;
-        transform.position = closedPosition;
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
+        spriteRenderer.sprite = closedSprite;
+        transform.position = closedPosition;
         Time.timeScale = 1;
     }
 
@@ -58,13 +58,18 @@ public class TuneCollection : MonoBehaviour
         spriteRenderer.sprite = openSprite;
         transform.position = openPosition;
         itemGet.SetActive(false);
+        ListFragments();
+        Time.timeScale = 0;
+    }
+
+    private void ListFragments()
+    {
         for (int i = 0; i < fragments.Count; i++)
         {
             Transform frag = transform.Find(fragments[i]);
-            frag.Translate(Vector3.up * i * -1.5f);
+            frag.Translate(Vector3.up * (i * -1.5f - frag.position.y));
             frag.gameObject.SetActive(true);
         }
-        Time.timeScale = 0;
     }
 
     public void AddFragment(string frag)

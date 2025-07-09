@@ -8,16 +8,23 @@ public class Room : MonoBehaviour
     float maxX;
     Vector2 endOfRoom;
     SpriteRenderer spriteRenderer;
+    RoomInfo info;
 
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void InitializeInfo(RoomInfo roomInfo)
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        info = roomInfo;
         Camera camera = GameObject.Find("Main Camera").gameObject.GetComponent<Camera>();
         float cameraHalfWidth = camera.orthographicSize * camera.aspect;
         maxX = cameraHalfWidth * -1;
         minX = -1 * spriteRenderer.sprite.bounds.size.x + cameraHalfWidth;
-        endOfRoom = new Vector2(maxX - 0.5f, cameraHalfWidth - 3); // player movement bounds; unique to room
+        endOfRoom = new Vector2(maxX + info.leftBarrierOffset, cameraHalfWidth - info.rightBarrierOffset); // player movement bounds; unique to room
     }
 
     public Vector2 getEndOfRoom()

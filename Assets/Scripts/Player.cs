@@ -32,16 +32,25 @@ public class Player : MonoBehaviour
         walkSpriteIndex = 0;
         velocity = 0f;
         direction = 1;
-        room = (Room)(GameObject.FindWithTag("Room").GetComponent<MonoBehaviour>());
-        endOfRoom = room.getEndOfRoom();
         Time.fixedDeltaTime = 0.1f; // TODO: move this to a better spot 
-        StartCoroutine(changeFramerate()); // TODO: move this to a better spot 
+        //StartCoroutine(changeFramerate()); // TODO: move this to a better spot 
     }
 
+    /*
     IEnumerator changeFramerate()
     {
         yield return new WaitForSeconds(1);
-        QualitySettings.vSyncCount = 1;
+        QualitySettings.vSyncCount = 0;
+        UnityEngine.Application.targetFrameRate = 60;
+    }
+    */
+
+    public void EnterRoom(Room r, float x)
+    {
+        room = r;
+        endOfRoom = room.getEndOfRoom();
+        UnityEngine.Debug.Log(transform.position.x + " to " + x);
+        transform.Translate(Vector3.right * (x - transform.position.x));
     }
 
     private void HandleInput()
@@ -94,16 +103,12 @@ public class Player : MonoBehaviour
         if ((velocity > 0f && transform.position.x < 0f) || (velocity < 0f && transform.position.x > 0f))
         {
             transform.Translate(Vector3.right * velocity * Time.deltaTime);
-            //deltaTimeSum += Time.deltaTime;
-            UnityEngine.Debug.Log(Time.deltaTime);
         } else
         {
             bool scrollable = room.Scroll(velocity);
             if (!scrollable)
             {
                 transform.Translate(Vector3.right * velocity * Time.deltaTime);
-                //deltaTimeSum2 += Time.deltaTime;
-                UnityEngine.Debug.Log(Time.deltaTime);
             }
         }
     }
