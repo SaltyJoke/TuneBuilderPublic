@@ -40,7 +40,7 @@ public class TuneCollection : MonoBehaviour
         }
     }
 
-    public void CloseMenu()
+    void CloseMenu()
     {
         menuOpen = false;
         for (int i = 0; i < transform.childCount; i++)
@@ -52,7 +52,7 @@ public class TuneCollection : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void OpenMenu()
+    void OpenMenu()
     {
         menuOpen = true;
         spriteRenderer.sprite = openSprite;
@@ -67,7 +67,7 @@ public class TuneCollection : MonoBehaviour
         for (int i = 0; i < fragments.Count; i++)
         {
             Transform frag = transform.Find(fragments[i]);
-            frag.Translate(Vector3.up * (i * -1.5f - frag.position.y));
+            frag.Translate(Vector3.up * (i * -1.5f - frag.position.y + 3));
             frag.gameObject.SetActive(true);
         }
     }
