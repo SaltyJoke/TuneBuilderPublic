@@ -74,6 +74,10 @@ public class TuneCollection : MonoBehaviour
 
     public void AddFragment(string frag)
     {
+        if (fragments.Contains(frag))
+        {
+            return;
+        }
         fragments.Add(frag);
         itemGet.SetActive(true);
     }

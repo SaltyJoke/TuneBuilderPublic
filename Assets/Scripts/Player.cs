@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
     {
         room = r;
         endOfRoom = room.getEndOfRoom();
-        UnityEngine.Debug.Log(transform.position.x + " to " + x);
         transform.Translate(Vector3.right * (x - transform.position.x));
     }
 

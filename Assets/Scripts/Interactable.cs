@@ -8,29 +8,34 @@ public class Interactable : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     bool active = false;
-    bool itemCollected = false;
-    TuneCollection tuneMenu;
+    RoomManager manager;
+    Sprite activeSprite;
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    public void Initialize()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        activeSprite = Resources.Load<Sprite>("Visuals/" + gameObject.name + "-interact");
         Deactivate();
-        tuneMenu = (TuneCollection)(GameObject.Find("TuneMenu").gameObject.GetComponent<MonoBehaviour>());
+        manager = (RoomManager)(GameObject.Find("RoomManager").gameObject.GetComponent<MonoBehaviour>());
+        UnityEngine.Debug.Log("Initialize " + transform.GetSiblingIndex());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (active && !itemCollected && Input.GetKeyUp(KeyCode.C))
+        if (active && Input.GetKeyUp(KeyCode.C))
         {
-            tuneMenu.AddFragment(gameObject.name);
-            itemCollected = true;
+            manager.ProcessInteraction(name, transform.parent.name, transform.GetSiblingIndex());
         }
     }
 
     public void Activate()
     {
-        spriteRenderer.sprite = Resources.Load<Sprite>("Visuals/" + gameObject.name + "-interact");
+        spriteRenderer.sprite = activeSprite;
         active = true;
     }
 
@@ -42,7 +47,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.name == "Player")
         {
             Activate();
         }
@@ -50,7 +55,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.name == "Player")
         {
             Deactivate();
         }

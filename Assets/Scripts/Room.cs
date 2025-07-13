@@ -13,7 +13,6 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void InitializeInfo(RoomInfo roomInfo)
@@ -25,6 +24,8 @@ public class Room : MonoBehaviour
         maxX = cameraHalfWidth * -1;
         minX = -1 * spriteRenderer.sprite.bounds.size.x + cameraHalfWidth;
         endOfRoom = new Vector2(maxX + info.leftBarrierOffset, cameraHalfWidth - info.rightBarrierOffset); // player movement bounds; unique to room
+        transform.BroadcastMessage("Initialize");
+        UnityEngine.Debug.Log("InitializeInfo");
     }
 
     public Vector2 getEndOfRoom()
