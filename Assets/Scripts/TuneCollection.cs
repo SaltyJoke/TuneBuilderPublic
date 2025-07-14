@@ -67,7 +67,7 @@ public class TuneCollection : MonoBehaviour
         for (int i = 0; i < fragments.Count; i++)
         {
             Transform frag = transform.Find(fragments[i]);
-            frag.Translate(Vector3.up * (i * -1.5f - frag.position.y + 3));
+            frag.Translate(Vector3.up * (i * -1.4f - frag.position.y + 3.5f));
             frag.gameObject.SetActive(true);
         }
     }

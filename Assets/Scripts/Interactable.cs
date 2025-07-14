@@ -21,7 +21,6 @@ public class Interactable : MonoBehaviour
         activeSprite = Resources.Load<Sprite>("Visuals/" + gameObject.name + "-interact");
         Deactivate();
         manager = (RoomManager)(GameObject.Find("RoomManager").gameObject.GetComponent<MonoBehaviour>());
-        UnityEngine.Debug.Log("Initialize " + transform.GetSiblingIndex());
     }
 
     // Update is called once per frame
