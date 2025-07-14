@@ -55,7 +55,6 @@ public class RoomManager : MonoBehaviour
     void TransitionRoom(string transitionName)
     {
         string destination = roomConnections[transitionName];
-        UnityEngine.Debug.Log(destination);
         currentRoom = (Room)(GameObject.Find(destination).GetComponent<MonoBehaviour>());
         currentRoom.InitializeInfo(roomInfo[destination]);
         player.EnterRoom(currentRoom, roomInfo[destination].playerStartingX);

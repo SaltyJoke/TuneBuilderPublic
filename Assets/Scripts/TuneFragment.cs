@@ -27,11 +27,11 @@ public class TuneFragment : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            ToggleInteraction();
+            SendMessageUpwards("ToggleInteraction", transform.GetSiblingIndex());
         }
     }
 
-    private void ToggleInteraction()
+    public void ToggleInteraction()
     {
         if (!interacting)
         {

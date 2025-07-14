@@ -12,6 +12,11 @@ public class TuneCollection : MonoBehaviour
     Sprite closedSprite;
     Sprite openSprite;
     GameObject itemGet;
+
+    AudioSource audioSource;
+    AudioClip[,] audioClips = new AudioClip[4, 4];
+    int currentFragment;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,14 @@ public class TuneCollection : MonoBehaviour
         closedSprite = Resources.Load<Sprite>("Visuals/cd-player-placeholder");
         openSprite = Resources.Load<Sprite>("Visuals/tune-menu");
         itemGet = transform.Find("ItemGet").gameObject;
+
+        audioSource = GetComponent<AudioSource>();
+        audioClips[1, 0] = Resources.Load<AudioClip>("Audio/var1lh-placeholder");
+        audioClips[1, 3] = Resources.Load<AudioClip>("Audio/v1-v2-placeholder");
+        audioClips[2, 0] = Resources.Load<AudioClip>("Audio/themelh-placeholder");
+        audioClips[2, 3] = Resources.Load<AudioClip>("Audio/t-v2-placeholder");
+        audioClips[3, 0] = Resources.Load<AudioClip>("Audio/var2rh-placeholder");
+
         CloseMenu();
     }
 
@@ -49,6 +62,8 @@ public class TuneCollection : MonoBehaviour
         }
         spriteRenderer.sprite = closedSprite;
         transform.position = closedPosition;
+        audioSource.Stop();
+        currentFragment = 0;
         Time.timeScale = 1;
     }
 
@@ -80,5 +95,25 @@ public class TuneCollection : MonoBehaviour
         }
         fragments.Add(frag);
         itemGet.SetActive(true);
+    }
+
+    public void ToggleInteraction(int index)
+    {
+        if (currentFragment == index)
+        {
+            currentFragment = 0;
+            audioSource.Stop();
+        } else
+        {
+            if (currentFragment != 0)
+            {
+                TuneFragment frag = (TuneFragment)(transform.GetChild(currentFragment).gameObject.GetComponent<MonoBehaviour>());
+                frag.ToggleInteraction();
+                audioSource.Stop();
+            }
+            currentFragment = index;
+            audioSource.clip = audioClips[index, 0];
+            audioSource.Play();
+        }
     }
 }

@@ -14,7 +14,6 @@ public class ContactTrigger : MonoBehaviour
     public void Initialize()
     {
         manager = (RoomManager)(GameObject.Find("RoomManager").gameObject.GetComponent<MonoBehaviour>());
-        UnityEngine.Debug.Log("Initialize " + transform.GetSiblingIndex());
     }
 
     // Update is called once per frame
