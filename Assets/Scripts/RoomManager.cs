@@ -27,7 +27,7 @@ public class RoomManager : MonoBehaviour
         { "door", new int[] { 2, 0 } },
         { "BedroomExitLeft", new int[] { 1, 1 } },
         { "HallwayExitLeft", new int[] { 3, 0 } },
-        { "BathroomExitRight", new int[] { 2, 0 } }
+        { "BathroomExitRight", new int[] { 1, 0 } }
     };
     // Start is called before the first frame update
     void Start()

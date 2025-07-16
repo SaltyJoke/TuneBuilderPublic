@@ -38,6 +38,7 @@ public class Interactable : MonoBehaviour
     public void Activate()
     {
         spriteRenderer.sprite = activeSprite;
+        UnityEngine.Debug.Assert(spriteRenderer.sprite);
         active = true;
     }
 
@@ -52,6 +53,7 @@ public class Interactable : MonoBehaviour
         if (other.name == "Player")
         {
             Activate();
+            UnityEngine.Debug.Log("Enter Interactable");
         }
     }
 

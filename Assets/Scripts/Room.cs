@@ -26,7 +26,6 @@ public class Room : MonoBehaviour
         minX = -1 * spriteRenderer.sprite.bounds.size.x + cameraHalfWidth;
         endOfRoom = new Vector2(maxX + leftBarrier, cameraHalfWidth - rightBarrier); // player movement bounds; unique to room
         transform.BroadcastMessage("Initialize");
-        UnityEngine.Debug.Log(minX);
     }
 
     public Vector2 GetEndOfRoom()

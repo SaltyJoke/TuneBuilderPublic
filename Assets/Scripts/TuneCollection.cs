@@ -24,7 +24,7 @@ public class TuneCollection : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         closedPosition = new Vector3(-8.34f, 4.13f, 0.5f);
         openPosition = new Vector3(0, 0, 0.5f);
-        closedSprite = Resources.Load<Sprite>("Visuals/cd-player-placeholder");
+        closedSprite = Resources.Load<Sprite>("Visuals/minimized-menu");
         openSprite = Resources.Load<Sprite>("Visuals/tune-menu");
         itemGet = transform.Find("ItemGet").gameObject;
 
@@ -44,7 +44,6 @@ public class TuneCollection : MonoBehaviour
         audioClips[5, 0] = Resources.Load<AudioClip>("Audio/var2lh-placeholder");
         audioClips[5, 6] = Resources.Load<AudioClip>("Audio/v2-v1-placeholder");
         audioClips[6, 0] = Resources.Load<AudioClip>("Audio/var1rh-placeholder");
-
 
         CloseMenu();
     }
