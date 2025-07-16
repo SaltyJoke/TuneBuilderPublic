@@ -10,6 +10,7 @@ public struct RoomInfo
     public float leftBarrierOffset; // leftmost player offset from left of room
     public float rightBarrierOffset; // rightmost player offset from right of room
     public int[] interactionType; // what happens when each child is interacted with
+                                  // -1 = nothing / placeholder, 0 = room transition, 1 = tune fragment, 2 = cd player, 3 = exit game
 }
 
 public class RoomManager : MonoBehaviour
@@ -24,7 +25,9 @@ public class RoomManager : MonoBehaviour
         { "KitchenExitLeft", new int[] { 1, 2 } },
         { "HallwayExitRight", new int[] { 0, 0 } },
         { "door", new int[] { 2, 0 } },
-        { "BedroomExitLeft", new int[] { 1, 1 } }
+        { "BedroomExitLeft", new int[] { 1, 1 } },
+        { "HallwayExitLeft", new int[] { 3, 0 } },
+        { "BathroomExitRight", new int[] { 2, 0 } }
     };
     // Start is called before the first frame update
     void Start()
@@ -59,6 +62,15 @@ public class RoomManager : MonoBehaviour
             rightBarrierOffset = 1f,
             interactionType = new int[] { -1, 0, 1, 1 }
         };
+        roomInfo[3] = new RoomInfo()
+        {
+            room = GameObject.Find("Bathroom"),
+            playerStartingX = new float[] { 9f },
+            roomStartingX = new float[] { -9.6f },
+            leftBarrierOffset = 1f,
+            rightBarrierOffset = -0.5f,
+            interactionType = new int[] { -1, 0, 1, 3 }
+        };
 
         TransitionRoom("Start");
     }
@@ -74,9 +86,14 @@ public class RoomManager : MonoBehaviour
         if (roomInfo[room].interactionType[index] == 0)
         {
             TransitionRoom(interactionName);
-        } else
+        }
+        else if (roomInfo[room].interactionType[index] == 1)
         {
             tuneCollection.AddFragment(interactionName);
+        }
+        else
+        {
+            UnityEngine.Debug.Log("Unprepared interaction " + interactionName);
         }
     }
 

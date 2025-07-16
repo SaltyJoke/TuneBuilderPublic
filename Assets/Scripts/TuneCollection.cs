@@ -14,7 +14,7 @@ public class TuneCollection : MonoBehaviour
     GameObject itemGet;
 
     AudioSource audioSource;
-    AudioClip[,] audioClips = new AudioClip[4, 4];
+    AudioClip[,] audioClips = new AudioClip[7, 7];
     int currentFragment;
 
     // Start is called before the first frame update
@@ -31,9 +31,20 @@ public class TuneCollection : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioClips[1, 0] = Resources.Load<AudioClip>("Audio/var1lh-placeholder");
         audioClips[1, 3] = Resources.Load<AudioClip>("Audio/v1-v2-placeholder");
+        audioClips[1, 4] = Resources.Load<AudioClip>("Audio/v1-t-placeholder");
+        audioClips[1, 6] = Resources.Load<AudioClip>("Audio/var1-placeholder");
         audioClips[2, 0] = Resources.Load<AudioClip>("Audio/themelh-placeholder");
         audioClips[2, 3] = Resources.Load<AudioClip>("Audio/t-v2-placeholder");
+        audioClips[2, 4] = Resources.Load<AudioClip>("Audio/theme-placeholder");
+        audioClips[2, 6] = Resources.Load<AudioClip>("Audio/t-v1-placeholder");
         audioClips[3, 0] = Resources.Load<AudioClip>("Audio/var2rh-placeholder");
+        audioClips[3, 5] = Resources.Load<AudioClip>("Audio/var2-placeholder");
+        audioClips[4, 0] = Resources.Load<AudioClip>("Audio/themerh-placeholder");
+        audioClips[4, 5] = Resources.Load<AudioClip>("Audio/v2-t-placeholder");
+        audioClips[5, 0] = Resources.Load<AudioClip>("Audio/var2lh-placeholder");
+        audioClips[5, 6] = Resources.Load<AudioClip>("Audio/v2-v1-placeholder");
+        audioClips[6, 0] = Resources.Load<AudioClip>("Audio/var1rh-placeholder");
+
 
         CloseMenu();
     }
@@ -56,14 +67,19 @@ public class TuneCollection : MonoBehaviour
     void CloseMenu()
     {
         menuOpen = false;
+        if (currentFragment != 0)
+        {
+            TuneFragment frag = (TuneFragment)(transform.GetChild(currentFragment).gameObject.GetComponent<MonoBehaviour>());
+            frag.ToggleInteraction();
+            audioSource.Stop();
+            currentFragment = 0;
+        }
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
         spriteRenderer.sprite = closedSprite;
         transform.position = closedPosition;
-        audioSource.Stop();
-        currentFragment = 0;
         Time.timeScale = 1;
     }
 
