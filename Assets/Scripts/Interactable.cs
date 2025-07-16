@@ -10,6 +10,7 @@ public class Interactable : MonoBehaviour
     bool active = false;
     RoomManager manager;
     Sprite activeSprite;
+    int roomIndex;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,8 @@ public class Interactable : MonoBehaviour
         activeSprite = Resources.Load<Sprite>("Visuals/" + gameObject.name + "-interact");
         Deactivate();
         manager = (RoomManager)(GameObject.Find("RoomManager").gameObject.GetComponent<MonoBehaviour>());
+        Room parent = (Room)(transform.parent.GetComponent<MonoBehaviour>());
+        roomIndex = parent.roomIndex;
     }
 
     // Update is called once per frame
@@ -28,7 +31,7 @@ public class Interactable : MonoBehaviour
     {
         if (active && Input.GetKeyUp(KeyCode.C))
         {
-            manager.ProcessInteraction(name, transform.parent.name, transform.GetSiblingIndex());
+            manager.ProcessInteraction(name, roomIndex, transform.GetSiblingIndex());
         }
     }
 

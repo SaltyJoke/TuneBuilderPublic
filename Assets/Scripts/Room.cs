@@ -4,30 +4,32 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public int roomIndex;
     float minX;
     float maxX;
     Vector2 endOfRoom;
     SpriteRenderer spriteRenderer;
-    RoomInfo info;
 
     // Start is called before the first frame update
     void Start()
     {
     }
 
-    public void InitializeInfo(RoomInfo roomInfo)
+    public void InitializeInfo(int index, float x, float leftBarrier, float rightBarrier)
     {
+        roomIndex = index;
+        transform.Translate(Vector3.right * (x - transform.position.x));
         spriteRenderer = GetComponent<SpriteRenderer>();
-        info = roomInfo;
         Camera camera = GameObject.Find("Main Camera").gameObject.GetComponent<Camera>();
         float cameraHalfWidth = camera.orthographicSize * camera.aspect;
         maxX = cameraHalfWidth * -1;
         minX = -1 * spriteRenderer.sprite.bounds.size.x + cameraHalfWidth;
-        endOfRoom = new Vector2(maxX + info.leftBarrierOffset, cameraHalfWidth - info.rightBarrierOffset); // player movement bounds; unique to room
+        endOfRoom = new Vector2(maxX + leftBarrier, cameraHalfWidth - rightBarrier); // player movement bounds; unique to room
         transform.BroadcastMessage("Initialize");
+        UnityEngine.Debug.Log(minX);
     }
 
-    public Vector2 getEndOfRoom()
+    public Vector2 GetEndOfRoom()
     {
         return endOfRoom;
     }
@@ -52,6 +54,5 @@ public class Room : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

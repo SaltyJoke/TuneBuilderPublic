@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     public void EnterRoom(Room r, float x)
     {
         room = r;
-        endOfRoom = room.getEndOfRoom();
+        endOfRoom = room.GetEndOfRoom();
         transform.Translate(Vector3.right * (x - transform.position.x));
     }
 
