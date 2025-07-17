@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FragmentType
+{
+    LEFT, RIGHT
+};
+
 public class TuneCollection : MonoBehaviour
 {
     List<string> fragments;
@@ -14,7 +19,6 @@ public class TuneCollection : MonoBehaviour
     GameObject itemGet;
 
     AudioSource audioSource;
-    AudioClip[,] audioClips = new AudioClip[7, 7];
     int currentFragment;
 
     // Start is called before the first frame update
@@ -29,21 +33,6 @@ public class TuneCollection : MonoBehaviour
         itemGet = transform.Find("ItemGet").gameObject;
 
         audioSource = GetComponent<AudioSource>();
-        audioClips[1, 0] = Resources.Load<AudioClip>("Audio/var1lh-placeholder");
-        audioClips[1, 3] = Resources.Load<AudioClip>("Audio/v1-v2-placeholder");
-        audioClips[1, 4] = Resources.Load<AudioClip>("Audio/v1-t-placeholder");
-        audioClips[1, 6] = Resources.Load<AudioClip>("Audio/var1-placeholder");
-        audioClips[2, 0] = Resources.Load<AudioClip>("Audio/themelh-placeholder");
-        audioClips[2, 3] = Resources.Load<AudioClip>("Audio/t-v2-placeholder");
-        audioClips[2, 4] = Resources.Load<AudioClip>("Audio/theme-placeholder");
-        audioClips[2, 6] = Resources.Load<AudioClip>("Audio/t-v1-placeholder");
-        audioClips[3, 0] = Resources.Load<AudioClip>("Audio/var2rh-placeholder");
-        audioClips[3, 5] = Resources.Load<AudioClip>("Audio/var2-placeholder");
-        audioClips[4, 0] = Resources.Load<AudioClip>("Audio/themerh-placeholder");
-        audioClips[4, 5] = Resources.Load<AudioClip>("Audio/v2-t-placeholder");
-        audioClips[5, 0] = Resources.Load<AudioClip>("Audio/var2lh-placeholder");
-        audioClips[5, 6] = Resources.Load<AudioClip>("Audio/v2-v1-placeholder");
-        audioClips[6, 0] = Resources.Load<AudioClip>("Audio/var1rh-placeholder");
 
         CloseMenu();
     }
@@ -127,7 +116,8 @@ public class TuneCollection : MonoBehaviour
                 audioSource.Stop();
             }
             currentFragment = index;
-            audioSource.clip = audioClips[index, 0];
+            TuneFragment fragment = (TuneFragment)(transform.GetChild(currentFragment).gameObject.GetComponent<MonoBehaviour>());
+            audioSource.clip = fragment.audioClip;
             audioSource.Play();
         }
     }

@@ -45,11 +45,11 @@ public class Player : MonoBehaviour
     }
     */
 
-    public void EnterRoom(Room r, float x)
+    public void EnterRoom(Room r, int entryIndex)
     {
         room = r;
         endOfRoom = room.GetEndOfRoom();
-        transform.Translate(Vector3.right * (x - transform.position.x));
+        transform.Translate(Vector3.right * (r.roomInfo.playerStartingX[entryIndex] - transform.position.x));
     }
 
     private void HandleInput()

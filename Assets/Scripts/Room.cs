@@ -5,6 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public int roomIndex;
+    public RoomInfo roomInfo; // value set in Unity Editor
     float minX;
     float maxX;
     Vector2 endOfRoom;
@@ -15,16 +16,15 @@ public class Room : MonoBehaviour
     {
     }
 
-    public void InitializeInfo(int index, float x, float leftBarrier, float rightBarrier)
+    public void InitializeRoom(int entryIndex)
     {
-        roomIndex = index;
-        transform.Translate(Vector3.right * (x - transform.position.x));
+        transform.Translate(Vector3.right * (roomInfo.roomStartingX[entryIndex] - transform.position.x));
         spriteRenderer = GetComponent<SpriteRenderer>();
         Camera camera = GameObject.Find("Main Camera").gameObject.GetComponent<Camera>();
         float cameraHalfWidth = camera.orthographicSize * camera.aspect;
         maxX = cameraHalfWidth * -1;
         minX = -1 * spriteRenderer.sprite.bounds.size.x + cameraHalfWidth;
-        endOfRoom = new Vector2(maxX + leftBarrier, cameraHalfWidth - rightBarrier); // player movement bounds; unique to room
+        endOfRoom = new Vector2(maxX + roomInfo.leftBarrierOffset, cameraHalfWidth - roomInfo.rightBarrierOffset); // player movement bounds; unique to room
         transform.BroadcastMessage("Initialize");
     }
 

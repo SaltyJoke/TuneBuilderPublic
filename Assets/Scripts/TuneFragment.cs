@@ -7,6 +7,8 @@ public class TuneFragment : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Sprite defaultSprite;
     Sprite interactiveSprite;
+    [SerializeField] public AudioClip audioClip;
+    public FragmentType fragmentType;
     bool interacting;
 
     // Start is called before the first frame update
