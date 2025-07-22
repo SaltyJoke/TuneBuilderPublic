@@ -23,25 +23,18 @@ public class RoomManager : MonoBehaviour
     Player player;
     TuneCollection tuneCollection;
     Room currentRoom;
-    RoomInfo[] roomInfo = new RoomInfo[4];
-    readonly Dictionary<string, int[]> roomConnections = new Dictionary<string, int[]>()
-    {
-        { "Start", new int[] { 0, 1 } },
-        { "KitchenExitLeft", new int[] { 1, 2 } },
-        { "HallwayExitRight", new int[] { 0, 0 } },
-        { "door", new int[] { 2, 0 } },
-        { "BedroomExitLeft", new int[] { 1, 1 } },
-        { "HallwayExitLeft", new int[] { 3, 0 } },
-        { "BathroomExitRight", new int[] { 1, 0 } }
-    };
-    GameObject[] rooms = new GameObject[4];
+
+    // room transition order: start, kitchen, hallway left / center / right, bedroom, bathroom
+    [SerializeField] int[] destinationRooms = new int[] { 0, 1, 3, 2, 0, 1, 1 };
+    [SerializeField] int[] destinationEntryIndices = new int[] { 1, 2, 0, 0, 0, 1, 0 };
+    [SerializeField] GameObject[] rooms = new GameObject[4];
+
+    public static RoomManager Instance;
 
     void Awake()
     {
-        rooms[0] = GameObject.Find("Kitchen");
-        rooms[1] = GameObject.Find("Hallway");
-        rooms[2] = GameObject.Find("Bedroom");
-        rooms[3] = GameObject.Find("Bathroom");
+        Instance = this;
+
         foreach (GameObject room in rooms)
         {
             room.SetActive(false);
@@ -54,7 +47,7 @@ public class RoomManager : MonoBehaviour
         player = (Player)(GameObject.Find("Player").GetComponent<MonoBehaviour>());
         tuneCollection = (TuneCollection)(GameObject.Find("TuneMenu").gameObject.GetComponent<MonoBehaviour>());
 
-        TransitionRoom("Start");
+        TransitionRoom(0);
     }
 
     // Update is called once per frame
@@ -63,15 +56,15 @@ public class RoomManager : MonoBehaviour
         
     }
 
-    public void ProcessInteraction(string interactionName, InteractionType type)
+    public void ProcessInteraction(int interactionID, InteractionType type)
     {
         switch (type)
         {
             case InteractionType.ROOM_TRANSITION:
-                TransitionRoom(interactionName);
+                TransitionRoom(interactionID);
                 break;
             case InteractionType.ADD_FRAGMENT:
-                tuneCollection.AddFragment(interactionName);
+                tuneCollection.AddFragment(interactionID);
                 break;
             case InteractionType.CD_PLAYER:
                 UnityEngine.Debug.Log("CD player not implemented");
@@ -82,18 +75,16 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    void TransitionRoom(string transitionName)
+    void TransitionRoom(int transitionID)
     {
-        int index = roomConnections[transitionName][0];
-        int entryIndex = roomConnections[transitionName][1];
         for (int i = 0; i < rooms.Length; i++)
         {
-            if (i == index)
+            if (i == destinationRooms[transitionID])
             {
                 rooms[i].SetActive(true);
                 currentRoom = (Room)(rooms[i].GetComponent<MonoBehaviour>());
-                currentRoom.InitializeRoom(entryIndex);
-                player.EnterRoom(currentRoom, entryIndex);
+                currentRoom.InitializeRoom(destinationEntryIndices[transitionID]);
+                player.EnterRoom(currentRoom, destinationEntryIndices[transitionID]);
             } else
             {
                 rooms[i].SetActive(false); // TODO: look into whether unloading rooms completely is wanted

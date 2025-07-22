@@ -9,7 +9,6 @@ public enum FragmentType
 
 public class TuneCollection : MonoBehaviour
 {
-    List<string> fragments;
     SpriteRenderer spriteRenderer;
     bool menuOpen;
     Vector3 closedPosition;
@@ -19,12 +18,13 @@ public class TuneCollection : MonoBehaviour
     GameObject itemGet;
 
     AudioSource audioSource;
+    List<int> fragments;
     int currentFragment;
 
     // Start is called before the first frame update
     void Start()
     {
-        fragments = new List<string>();
+        fragments = new List<int>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         closedPosition = new Vector3(-8.34f, 4.13f, 0.5f);
         openPosition = new Vector3(0, 0, 0.5f);
@@ -85,13 +85,13 @@ public class TuneCollection : MonoBehaviour
     {
         for (int i = 0; i < fragments.Count; i++)
         {
-            Transform frag = transform.Find(fragments[i]);
+            Transform frag = transform.GetChild(fragments[i]);
             frag.Translate(Vector3.up * (i * -1.4f - frag.position.y + 3.5f));
             frag.gameObject.SetActive(true);
         }
     }
 
-    public void AddFragment(string frag)
+    public void AddFragment(int frag)
     {
         if (fragments.Contains(frag))
         {

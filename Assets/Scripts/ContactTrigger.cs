@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class ContactTrigger : MonoBehaviour
 {
-    RoomManager manager;
+    public int interactionID; // value set in Unity Editor
     public InteractionType interactionType; // value set in Unity Editor
 
     // Start is called before the first frame update
     void Start()
     {
-    }
-
-    public void Initialize()
-    {
-        manager = (RoomManager)(GameObject.Find("RoomManager").gameObject.GetComponent<MonoBehaviour>());
     }
 
     // Update is called once per frame
@@ -26,7 +21,7 @@ public class ContactTrigger : MonoBehaviour
     {
         if (other.name == "Player")
         {
-            manager.ProcessInteraction(name, interactionType);
+            RoomManager.Instance.ProcessInteraction(interactionID, interactionType);
         }
     }
 }

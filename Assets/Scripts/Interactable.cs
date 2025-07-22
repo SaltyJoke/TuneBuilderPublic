@@ -8,8 +8,8 @@ public class Interactable : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     bool active = false;
-    RoomManager manager;
     Sprite activeSprite;
+    public int interactionID; // value set in Unity Editor
     public InteractionType interactionType; // value set in Unity Editor
 
     // Start is called before the first frame update
@@ -22,7 +22,6 @@ public class Interactable : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         activeSprite = Resources.Load<Sprite>("Visuals/" + gameObject.name + "-interact");
         Deactivate();
-        manager = (RoomManager)(GameObject.Find("RoomManager").gameObject.GetComponent<MonoBehaviour>());
     }
 
     // Update is called once per frame
@@ -30,7 +29,7 @@ public class Interactable : MonoBehaviour
     {
         if (active && Input.GetKeyUp(KeyCode.C))
         {
-            manager.ProcessInteraction(name, interactionType);
+            RoomManager.Instance.ProcessInteraction(interactionID, interactionType);
         }
     }
 
