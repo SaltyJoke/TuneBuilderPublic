@@ -21,6 +21,13 @@ public class TuneCollection : MonoBehaviour
     List<int> fragments;
     int currentFragment;
 
+    public static TuneCollection Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,7 +75,7 @@ public class TuneCollection : MonoBehaviour
         }
         spriteRenderer.sprite = closedSprite;
         transform.position = closedPosition;
-        Time.timeScale = 1;
+        EventManager.Mode = GameMode.PLAY;
     }
 
     void OpenMenu()
@@ -78,7 +85,7 @@ public class TuneCollection : MonoBehaviour
         transform.position = openPosition;
         itemGet.SetActive(false);
         ListFragments();
-        Time.timeScale = 0;
+        EventManager.Mode = GameMode.PAUSE;
     }
 
     private void ListFragments()

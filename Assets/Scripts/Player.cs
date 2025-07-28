@@ -115,9 +115,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleInput();
-        UpdateVelocity();
-        UpdatePosition();
+        if (EventManager.Mode == GameMode.PLAY)
+        {
+            HandleInput();
+            UpdateVelocity();
+            UpdatePosition();
+        }
     }
 
     private void updateAnimation()
@@ -153,6 +156,9 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        updateAnimation();
+        if (EventManager.Mode == GameMode.PLAY)
+        {
+            updateAnimation();
+        }
     }
 }

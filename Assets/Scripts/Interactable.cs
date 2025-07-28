@@ -12,11 +12,6 @@ public class Interactable : MonoBehaviour
     public int interactionID; // value set in Unity Editor
     public InteractionType interactionType; // value set in Unity Editor
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     public void Initialize()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,9 +22,9 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active && Input.GetKeyUp(KeyCode.C))
+        if (active && Input.GetKeyUp(KeyCode.C) && EventManager.Mode == GameMode.PLAY)
         {
-            RoomManager.Instance.ProcessInteraction(interactionID, interactionType);
+            EventManager.ProcessInteraction(interactionID, interactionType);
         }
     }
 
