@@ -12,38 +12,41 @@ public class Player : MonoBehaviour
         STAND, START, WALK, STOP
     }
     private PlayerAnimationState animationState = PlayerAnimationState.STAND;
-    private string walkPrefix;
     private int walkSpriteIndex;
+    private Sprite[] sprites;
+
     private float velocity;
     private const float ZERO = 0.0001f;
     private int direction;
     Room room;
     Vector2 endOfRoom;
-    //double deltaTimeSum = 0;
-    //double deltaTimeSum2 = 0;
+
+    private void LoadSprites()
+    {
+        sprites = new Sprite[]
+        {
+            Resources.Load<Sprite>("Visuals/player-placeholder"),
+            Resources.Load<Sprite>("Visuals/player-placeholder-transition"),
+            Resources.Load<Sprite>("Visuals/player-placeholder-walk0"),
+            Resources.Load<Sprite>("Visuals/player-placeholder-walk1"),
+            Resources.Load<Sprite>("Visuals/player-placeholder-walk2"),
+            Resources.Load<Sprite>("Visuals/player-placeholder-walk3")
+        };
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = Resources.Load<Sprite>("Visuals/player-placeholder");
-        spriteRenderer.flipX = false;
-        walkPrefix = "Visuals/player-placeholder-walk";
         walkSpriteIndex = 0;
+        LoadSprites();
+        spriteRenderer.sprite = sprites[0];
+        spriteRenderer.flipX = false;
+
         velocity = 0f;
         direction = 1;
         Time.fixedDeltaTime = 0.1f; // TODO: move this to a better spot 
-        //StartCoroutine(changeFramerate()); // TODO: move this to a better spot 
     }
-
-    /*
-    IEnumerator changeFramerate()
-    {
-        yield return new WaitForSeconds(1);
-        QualitySettings.vSyncCount = 0;
-        UnityEngine.Application.targetFrameRate = 60;
-    }
-    */
 
     public void EnterRoom(Room r, int entryIndex)
     {
@@ -123,24 +126,23 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void updateAnimation()
+    private void UpdateAnimation()
     {
         spriteRenderer.flipX = direction == -1;
-        // TODO: update sprite before updating animation state to ensure at least one animation frame before sprite change 
         switch (animationState)
         {
             case PlayerAnimationState.STAND:
-                spriteRenderer.sprite = Resources.Load<Sprite>("Visuals/player-placeholder");
+                spriteRenderer.sprite = sprites[0];
                 break;
             case PlayerAnimationState.START:
-                spriteRenderer.sprite = Resources.Load<Sprite>("Visuals/player-placeholder-transition");
+                spriteRenderer.sprite = sprites[1];
                 break;
             case PlayerAnimationState.WALK:
-                spriteRenderer.sprite = Resources.Load<Sprite>(walkPrefix + walkSpriteIndex);
+                spriteRenderer.sprite = sprites[2 + walkSpriteIndex];
                 walkSpriteIndex = (walkSpriteIndex + 1) % 4;
                 break;
             case PlayerAnimationState.STOP:
-                spriteRenderer.sprite = Resources.Load<Sprite>("Visuals/player-placeholder-transition");
+                spriteRenderer.sprite = sprites[1];
                 break;
         }
         if (animationState == PlayerAnimationState.START)
@@ -158,7 +160,7 @@ public class Player : MonoBehaviour
     {
         if (EventManager.Mode == GameMode.PLAY)
         {
-            updateAnimation();
+            UpdateAnimation();
         }
     }
 }

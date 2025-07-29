@@ -37,6 +37,7 @@ public static class EventManager
                 break;
             case InteractionType.END_GAME:
                 SceneManager.LoadScene("MainMenu");
+                Mode = GameMode.PAUSE;
                 break;
         }
     }
@@ -47,6 +48,7 @@ public static class EventManager
         {
             case ButtonAction.START_GAME:
                 SceneManager.LoadScene("MainScene");
+                Mode = GameMode.PLAY;
                 break;
             case ButtonAction.QUIT_APPLICATION:
                 Application.Quit();

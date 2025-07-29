@@ -11,11 +11,6 @@ public class Room : MonoBehaviour
     Vector2 endOfRoom;
     SpriteRenderer spriteRenderer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     public void InitializeRoom(int entryIndex)
     {
         transform.Translate(Vector3.right * (roomInfo.roomStartingX[entryIndex] - transform.position.x));
@@ -48,10 +43,5 @@ public class Room : MonoBehaviour
         }
         transform.Translate(Vector3.right * velocity * Time.deltaTime * -1);
         return true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

@@ -16,7 +16,6 @@ public struct RoomInfo
 public class RoomManager : MonoBehaviour
 {
     Player player;
-    TuneCollection tuneCollection;
     Room currentRoom;
 
     // room transition order: start, kitchen, hallway left / center / right, bedroom, bathroom
@@ -40,15 +39,7 @@ public class RoomManager : MonoBehaviour
     void Start()
     {
         player = (Player)(GameObject.Find("Player").GetComponent<MonoBehaviour>());
-        tuneCollection = (TuneCollection)(GameObject.Find("TuneMenu").gameObject.GetComponent<MonoBehaviour>());
-
         TransitionRoom(0);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void TransitionRoom(int transitionID)

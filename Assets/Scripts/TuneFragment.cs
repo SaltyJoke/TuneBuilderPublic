@@ -19,12 +19,6 @@ public class TuneFragment : MonoBehaviour
         interactiveSprite = Resources.Load<Sprite>("Visuals/" + spriteRenderer.sprite.name + "-interact");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonUp(0))
