@@ -15,7 +15,7 @@ public enum InteractionType
 
 public enum ButtonAction
 {
-    START_GAME, QUIT_APPLICATION, INTERACTION_SUBSTITUTE
+    START_GAME, QUIT_APPLICATION, FRAGMENT_MENU, TUNE_MENU, INTERACTION_SUBSTITUTE
 };
 
 public static class EventManager
@@ -33,7 +33,7 @@ public static class EventManager
                 TuneCollection.Instance.AddFragment(interactionID);
                 break;
             case InteractionType.CD_PLAYER:
-                UnityEngine.Debug.Log("CD player not implemented");
+                TuneCollection.Instance.OpenTuneMenu(true);
                 break;
             case InteractionType.END_GAME:
                 SceneManager.LoadScene("MainMenu");
@@ -52,6 +52,12 @@ public static class EventManager
                 break;
             case ButtonAction.QUIT_APPLICATION:
                 Application.Quit();
+                break;
+            case ButtonAction.FRAGMENT_MENU:
+                TuneCollection.Instance.OpenFragmentMenu();
+                break;
+            case ButtonAction.TUNE_MENU:
+                TuneCollection.Instance.OpenTuneMenu();
                 break;
             case ButtonAction.INTERACTION_SUBSTITUTE:
                 UnityEngine.Debug.Log("Why are you here");

@@ -5,8 +5,8 @@ using UnityEngine;
 public class TuneFragment : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
-    Sprite defaultSprite;
-    Sprite interactiveSprite;
+    public Sprite defaultSprite;
+    public Sprite interactiveSprite;
     [SerializeField] public AudioClip audioClip;
     public FragmentType fragmentType;
     bool interacting;
@@ -15,8 +15,7 @@ public class TuneFragment : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        defaultSprite = spriteRenderer.sprite;
-        interactiveSprite = Resources.Load<Sprite>("Visuals/" + spriteRenderer.sprite.name + "-interact");
+        spriteRenderer.sprite = defaultSprite;
     }
 
     private void OnMouseOver()
