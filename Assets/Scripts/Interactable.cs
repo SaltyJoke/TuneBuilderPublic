@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour
     public void Initialize()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        activeSprite = Resources.Load<Sprite>("Visuals/" + gameObject.name + "-interact");
+        activeSprite = Resources.Load<Sprite>("Visuals/rooms/" + gameObject.name + "-interact");
         Deactivate();
     }
 

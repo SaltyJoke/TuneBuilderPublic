@@ -15,7 +15,7 @@ public enum InteractionType
 
 public enum ButtonAction
 {
-    START_GAME, QUIT_APPLICATION, FRAGMENT_MENU, TUNE_MENU, INTERACTION_SUBSTITUTE
+    START_GAME, QUIT_APPLICATION, FRAGMENT_MENU, TUNE_MENU
 };
 
 public static class EventManager
@@ -58,9 +58,6 @@ public static class EventManager
                 break;
             case ButtonAction.TUNE_MENU:
                 TuneCollection.Instance.OpenTuneMenu();
-                break;
-            case ButtonAction.INTERACTION_SUBSTITUTE:
-                UnityEngine.Debug.Log("Why are you here");
                 break;
         }
     }

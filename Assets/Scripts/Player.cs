@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     }
     private PlayerAnimationState animationState = PlayerAnimationState.STAND;
     private int walkSpriteIndex;
-    private Sprite[] sprites;
+    [SerializeField] Sprite[] sprites;
 
     private float velocity;
     private const float ZERO = 0.0001f;
@@ -21,25 +21,11 @@ public class Player : MonoBehaviour
     Room room;
     Vector2 endOfRoom;
 
-    private void LoadSprites()
-    {
-        sprites = new Sprite[]
-        {
-            Resources.Load<Sprite>("Visuals/player-placeholder"),
-            Resources.Load<Sprite>("Visuals/player-placeholder-transition"),
-            Resources.Load<Sprite>("Visuals/player-placeholder-walk0"),
-            Resources.Load<Sprite>("Visuals/player-placeholder-walk1"),
-            Resources.Load<Sprite>("Visuals/player-placeholder-walk2"),
-            Resources.Load<Sprite>("Visuals/player-placeholder-walk3")
-        };
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         walkSpriteIndex = 0;
-        LoadSprites();
         spriteRenderer.sprite = sprites[0];
         spriteRenderer.flipX = false;
 

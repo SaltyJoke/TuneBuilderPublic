@@ -742,7 +742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 4c7ec4edce945f94ebb770a153763fac, type: 3}
   interactiveSprite: {fileID: 21300000, guid: 52eae17fb4902ca459aa645fa87ce4a7, type: 3}
-  audioClip: {fileID: 8300000, guid: 0527035b03e7d0d4b976bfbe253c8e45, type: 3}
+  audioClip: {fileID: 8300000, guid: 65b2c0e333d8f52499e0c6a36c453bca, type: 3}
   fragmentType: 0
 --- !u!61 &210875507
 BoxCollider2D:
@@ -837,7 +837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: cc2f85933eb64cd4eabd4637c591f3a6, type: 3}
   interactiveSprite: {fileID: 21300000, guid: 38ffc40b7c1086945941f8f746e2ccd2, type: 3}
-  audioClip: {fileID: 8300000, guid: 7b6c315d8eeb08f40bf600f66f81ab29, type: 3}
+  audioClip: {fileID: 8300000, guid: 8efaf279ebb045e4e9e829fd8e1e63b7, type: 3}
   fragmentType: 0
 --- !u!61 &226440513
 BoxCollider2D:
@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 3744f97b4ff97ed44a5893d963b5a3e5, type: 3}
   interactiveSprite: {fileID: 21300000, guid: 053e5b22ff10c6b40a3eb5d56d3841a1, type: 3}
-  audioClip: {fileID: 8300000, guid: 181e5ce87635e964da2fc780435570e5, type: 3}
+  audioClip: {fileID: 8300000, guid: 642a01ad55bbaa54faea32083e2b90be, type: 3}
   fragmentType: 1
 --- !u!61 &289326859
 BoxCollider2D:
@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 6b4ebfc81d975d74ca0e5e69531f1bc5, type: 3}
   interactiveSprite: {fileID: 21300000, guid: 21ee69bc799884d46b327d5a95fa90c4, type: 3}
-  audioClip: {fileID: 8300000, guid: cbb37cfd92915d14dbbf35306dd2ef65, type: 3}
+  audioClip: {fileID: 8300000, guid: f440fb21dddc6024caa648a023506068, type: 3}
   fragmentType: 2
 --- !u!61 &302644570
 BoxCollider2D:
@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 3a773c0473482d34f8d10ccd35813487, type: 3}
   interactiveSprite: {fileID: 21300000, guid: c0b81ec664576a54db4ac54d95a8b287, type: 3}
-  audioClip: {fileID: 8300000, guid: 8410b1202b1ebd842b3a1c428da07594, type: 3}
+  audioClip: {fileID: 8300000, guid: be6612bfe4df8504dbbc3f9e2db405ef, type: 3}
   fragmentType: 1
 --- !u!61 &458329075
 BoxCollider2D:
@@ -1803,7 +1803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 06055ca984a872b41b204f958e7c48ed, type: 3}
   interactiveSprite: {fileID: 21300000, guid: b5ec6655039a9184fadcec7fb255bb06, type: 3}
-  audioClip: {fileID: 8300000, guid: 49424eb7a1548234eb1dc8deeccbab99, type: 3}
+  audioClip: {fileID: 8300000, guid: 2a29aaf3723e15446bcecab93e027e83, type: 3}
   fragmentType: 2
 --- !u!61 &511027400
 BoxCollider2D:
@@ -2516,7 +2516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: dae6c866de1b70941a341c8cb604a1af, type: 3}
   interactiveSprite: {fileID: 21300000, guid: 7261901eeba6bed44ad90f65c215e78e, type: 3}
-  audioClip: {fileID: 8300000, guid: 85c3ef46cd561284ca80643f17776159, type: 3}
+  audioClip: {fileID: 8300000, guid: aed217f430eb8884ab7fac90c64f6b49, type: 3}
   fragmentType: 2
 --- !u!61 &823097704
 BoxCollider2D:
@@ -3012,7 +3012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: a75df45ca88821546b30a80194851bce, type: 3}
   interactiveSprite: {fileID: 21300000, guid: 072024bf64298a04cb07b945ffbd08c3, type: 3}
-  audioClip: {fileID: 8300000, guid: 46810f6e40128e54db7e4b216103710d, type: 3}
+  audioClip: {fileID: 8300000, guid: 19e168983950e0047b804139a1b8894b, type: 3}
   fragmentType: 2
 --- !u!61 &991550444
 BoxCollider2D:
@@ -3304,7 +3304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: e59067106e79fe2429e71b46c62ad3e2, type: 3}
   interactiveSprite: {fileID: 21300000, guid: db138dff40b11244d9097ef5d3055452, type: 3}
-  audioClip: {fileID: 8300000, guid: 1f834413cdbc5564e9e041ed23301e9e, type: 3}
+  audioClip: {fileID: 8300000, guid: fb5f6d34cacc37a41a5bbf552e4438bc, type: 3}
   fragmentType: 2
 --- !u!61 &1079390982
 BoxCollider2D:
@@ -3587,7 +3587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: cefd5b98c47db5e42ba8c9e2f416f4b5, type: 3}
   interactiveSprite: {fileID: 21300000, guid: cadb6988621c3694b8c1ea8658b82a13, type: 3}
-  audioClip: {fileID: 8300000, guid: d955a71c5884c69468ebbf6a4e2ade85, type: 3}
+  audioClip: {fileID: 8300000, guid: 6beaf871b633ae846b9d6589aabd6ab9, type: 3}
   fragmentType: 0
 --- !u!61 &1148911813
 BoxCollider2D:
@@ -3766,7 +3766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: cadc58c4f17af3c45950c0062c147b41, type: 3}
   interactiveSprite: {fileID: 21300000, guid: 05c8d3840167d3f4b8bbe9e1560601a5, type: 3}
-  audioClip: {fileID: 8300000, guid: 1b06f4a8eaf7d4c49a779598fe8cbf35, type: 3}
+  audioClip: {fileID: 8300000, guid: a504c81b90cfe2d49b67ca3475e1ed6b, type: 3}
   fragmentType: 1
 --- !u!61 &1276853833
 BoxCollider2D:
@@ -4142,7 +4142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: cb9cbf4cddafb9245af51573c2489146, type: 3}
   interactiveSprite: {fileID: 21300000, guid: 66f74c269e6ffb04b98cd5421ab72ba5, type: 3}
-  audioClip: {fileID: 8300000, guid: 24737fcffb58e2b46b057856d01eaa72, type: 3}
+  audioClip: {fileID: 8300000, guid: b90a185f176644741955a1242413ac0d, type: 3}
   fragmentType: 2
 --- !u!61 &1553371705
 BoxCollider2D:
@@ -4449,7 +4449,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4614,6 +4614,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aab11b1bd8b18f4cb7233def676cdac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 45532842929b4a740a7ef2a6383bbc2a, type: 3}
+  - {fileID: 21300000, guid: 8b00e2e49d46d264980c03baa0fef773, type: 3}
+  - {fileID: 21300000, guid: 2932a2771153dec479f65374f3e8bc0c, type: 3}
+  - {fileID: 21300000, guid: 2716598e2006a6b44a627ca52d1cabf1, type: 3}
+  - {fileID: 21300000, guid: a6e439f6e97d99346a0c442201fb7556, type: 3}
+  - {fileID: 21300000, guid: 1dc81916de98b8848bff00afaad280d2, type: 3}
 --- !u!4 &1714645338
 Transform:
   m_ObjectHideFlags: 0
@@ -4750,7 +4757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 2c92ca5fbffd63743829770e97a5db59, type: 3}
   interactiveSprite: {fileID: 21300000, guid: f6cdb4e5a5c0b6941b1bf0d0740074b9, type: 3}
-  audioClip: {fileID: 8300000, guid: 390429fd16d8faf4d8b1acfbb3bce746, type: 3}
+  audioClip: {fileID: 8300000, guid: 51193b1e287da304bba4240768e5fc52, type: 3}
   fragmentType: 2
 --- !u!61 &1808195786
 BoxCollider2D:
@@ -4981,7 +4988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 147a6fc92fbf9db4384d8e8defc907b1, type: 3}
   interactiveSprite: {fileID: 21300000, guid: 463ba56dcd19b67419eb9bf3c6e6db98, type: 3}
-  audioClip: {fileID: 8300000, guid: 88085bb80437c39429669d4e58688054, type: 3}
+  audioClip: {fileID: 8300000, guid: efe619407c96e12438803c636b1bce93, type: 3}
   fragmentType: 2
 --- !u!61 &1857853562
 BoxCollider2D:
@@ -5158,7 +5165,7 @@ Transform:
   m_GameObject: {fileID: 1870377583}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.34, y: 0.23, z: -9.958865}
+  m_LocalPosition: {x: -8.34, y: 0.23, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5212,7 +5219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: c6d5ab32a1330ed458b9390837cfe8ef, type: 3}
   interactiveSprite: {fileID: 21300000, guid: c8d3f437b3116b04482a564de20a04f0, type: 3}
-  audioClip: {fileID: 8300000, guid: 1b56b3e668bdf494bb4389cafdc97562, type: 3}
+  audioClip: {fileID: 8300000, guid: 2f2c0cae1e07dc449b9dccb560e9ecc5, type: 3}
   fragmentType: 2
 --- !u!61 &1870747788
 BoxCollider2D:
@@ -5550,7 +5557,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -68,13 +68,14 @@ public class TuneCollection : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         closedPosition = new Vector3(-8.34f, 4.13f, 0.5f);
         openPosition = new Vector3(0, 0, 0.5f);
-        closedSprite = Resources.Load<Sprite>("Visuals/minimized-menu");
-        fragmentMenuSprite = Resources.Load<Sprite>("Visuals/tune-fragment-menu");
-        tuneMenuSprite = Resources.Load<Sprite>("Visuals/tune-menu");
+        closedSprite = Resources.Load<Sprite>("Visuals/menus/minimized-menu");
+        fragmentMenuSprite = Resources.Load<Sprite>("Visuals/menus/tune-fragment-menu");
+        tuneMenuSprite = Resources.Load<Sprite>("Visuals/menus/tune-menu");
         itemGet = transform.Find("ItemGet").gameObject;
         setBGMPrompt = transform.Find("SetBGMPrompt").gameObject;
 
         audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true;
 
         CloseMenu();
     }
